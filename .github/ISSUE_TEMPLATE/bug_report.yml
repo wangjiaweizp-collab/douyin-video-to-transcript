@@ -1,0 +1,71 @@
+name: 问题报告 / Bug report
+description: 报告脚本运行故障或结果异常
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **请勿粘贴 Cookie、真实主页链接、转写正文或任何个人数据。**
+        提交前请先跑一遍 `python scripts/selftest.py`，并查看
+        [排障文档](https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/blob/main/docs/TROUBLESHOOTING.md)。
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 实际发生了什么
+      description: 现象 + 完整报错摘要（可脱敏）
+      placeholder: |
+        运行 01_fetch_works.py 后提示「未抓到任何作品」…
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望的结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 按 1 / 2 / 3 列出；不要包含真实 Cookie
+      placeholder: |
+        1. 配置 config.json
+        2. python scripts/01_fetch_works.py
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: 运行环境
+      placeholder: "Windows 11 / Python 3.13 / Chrome 156"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 自检输出与日志
+      description: "`python scripts/selftest.py` 输出 + workspace/progress.log 最后 20 行（脱敏）"
+      render: shell
+
+  - type: input
+    id: works-stats
+    attributes:
+      label: works.json 的四个数字
+      placeholder: "pages / total / videos / image_only，例如 2 / 29 / 23 / 6"
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 确认
+      options:
+        - label: 我已确认 Cookie 有效，且没有把它粘贴到本 Issue
+          required: true
+        - label: 我已查看排障文档与已有 Issue
+          required: true

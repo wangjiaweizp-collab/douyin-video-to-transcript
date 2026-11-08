@@ -1,0 +1,10 @@
+# Python 依赖（建议 Python 3.10+，新建 venv 后安装）
+faster-whisper>=1.0
+imageio-ffmpeg>=0.4
+numpy>=1.24
+websocket-client>=1.6
+requests>=2.31
+
+# Node 依赖（可选：仅当你想用 polydl 辅助下载时）
+#   npm install -g polydl
+# 本工作流主路径用浏览器直连下载，不依赖 polydl。

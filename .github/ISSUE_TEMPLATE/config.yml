@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "安全问题（私下报告）"
+    url: https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/security/advisories/new
+    about: 请勿用公开 Issue 报告安全漏洞、泄露的凭据或合规问题
+  - name: "使用与排障"
+    url: https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/blob/main/docs/TROUBLESHOOTING.md
+    about: 先查故障排查文档，常见问题与分步诊断都在这里
+  - name: "使用边界与免责"
+    url: https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/blob/main/DISCLAIMER.md
+    about: 提交前请确认你的用法符合这里的边界

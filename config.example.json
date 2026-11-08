@@ -1,0 +1,14 @@
+{
+  "user_url": "https://www.douyin.com/user/MS4wLjABAAAAxxxxxxxx",
+  "cookie": "把 Chrome F12 → Network → 任一 douyin.com 请求 → Request Headers → Cookie 整行粘贴到这里",
+  "chrome_path": "",
+  "cdp_port": 9224,
+  "work_dir": "",
+  "model": "medium",
+  "model_path": "",
+  "output_name": "全部作品时间线文字稿.md",
+  "scroll_rounds": 12,
+  "scroll_interval_sec": 3,
+  "headless": false,
+  "_说明": "chrome_path/work_dir/model_path 留空即自动推导；cookie 必须是当前有效登录态；user_url 是博主主页 /user/ 链接"
+}

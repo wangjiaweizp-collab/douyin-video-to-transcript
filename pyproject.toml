@@ -1,0 +1,50 @@
+[project]
+name = "douyin-video-to-transcript"
+version = "1.0.0"
+description = "Fetch a Douyin creator's public posts, transcribe speech locally with faster-whisper, and merge into a chronological Markdown transcript."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "douyin-video-to-transcript contributors" }]
+keywords = ["douyin", "transcription", "faster-whisper", "whisper", "cdp", "chrome-devtools-protocol", "markdown"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Chinese (Simplified)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Utilities",
+]
+
+# 说明：本项目以「脚本集合」形式交付，不作为可 import 的包发布到 PyPI。
+# 此文件仅用于声明元数据与统一静态检查配置。
+[project.urls]
+Homepage = "https://github.com/wangjiaweizp-collab/douyin-video-to-transcript"
+Repository = "https://github.com/wangjiaweizp-collab/douyin-video-to-transcript"
+Issues = "https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/issues"
+Changelog = "https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/blob/main/CHANGELOG.md"
+Disclaimer = "https://github.com/wangjiaweizp-collab/douyin-video-to-transcript/blob/main/DISCLAIMER.md"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+exclude = ["workspace", ".venv", "_cdp_profile"]
+
+[tool.ruff.lint]
+# 仅启用高价值规则，避免风格争论阻塞贡献
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/[0-9][0-9]_*.py" = ["E402"]  # 编号脚本需要 sys.path 注入后再 import lib
+
+[tool.pytest.ini_options]
+testpaths = ["scripts"]
+python_files = ["selftest.py"]
