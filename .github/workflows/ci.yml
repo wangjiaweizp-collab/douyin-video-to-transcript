@@ -19,7 +19,7 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
     steps:
       - name: 检出
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 准备 Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -49,7 +49,7 @@ jobs:
     name: 文档链接与敏感信息检查
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: 确认没有把凭据或运行时产物提交上来
         run: |
