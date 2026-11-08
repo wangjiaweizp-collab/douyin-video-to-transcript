@@ -1,7 +1,7 @@
 # Python 依赖（建议 Python 3.10+，新建 venv 后安装）
 faster-whisper>=1.0
 imageio-ffmpeg>=0.4
-numpy>=1.24
+numpy>=2.2.6
 websocket-client>=1.6
 requests>=2.31
 
