@@ -10,6 +10,10 @@
     export GITHUB_PRIVATE=0                        # 可选，1 = 私有仓库
     python scripts/publish_github.py
 
+    # 推荐：把 token 单独存到仓库目录之外的文件（GUI 进程里临时 export 常常读不到）
+    #   C:\\Users\\<你>\\.workbuddy\\github_pat.txt   （单行纯文本，无引号）
+    #   export GITHUB_TOKEN_FILE=/path/to/pat.txt     # 自定义路径
+
 安全约定：
     * token 只从环境变量读，不写入任何文件、不打印、不写进 git remote；
     * 带 token 的 URL 仅出现在这一个 git 子进程里，用完即弃；
@@ -73,8 +77,16 @@ def git(*args: str, check: bool = True) -> subprocess.CompletedProcess:
 
 def main() -> int:
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    # GUI 进程启动后再 export 的环境变量，子进程往往读不到；文件回退更可靠。
+    # 默认路径在用户目录而非仓库内，不会被 git 跟踪。
+    pat_file = Path(os.environ.get("GITHUB_TOKEN_FILE")
+                    or (Path.home() / ".workbuddy" / "github_pat.txt"))
+    if not token and pat_file.exists():
+        token = pat_file.read_text(encoding="utf-8").strip()
     if not token:
-        print("[ERROR] 未设置 GITHUB_TOKEN。请先创建具有 repo 权限的 PAT 并设为环境变量。", file=sys.stderr)
+        print("[ERROR] 未设置 GITHUB_TOKEN，也未找到 token 文件。", file=sys.stderr)
+        print("        可设环境变量 GITHUB_TOKEN，或把 PAT 写入 "
+              f"{pat_file}（单行纯文本）。", file=sys.stderr)
         print("        详见 README.md「从其他电脑发布」一节。", file=sys.stderr)
         return 2
     repo = os.environ.get("GITHUB_REPO") or DEFAULT_REPO

@@ -174,9 +174,19 @@ export GITHUB_TOKEN=ghp_xxx    # Windows: set GITHUB_TOKEN=ghp_xxx
 python scripts/publish_github.py
 ```
 
-脚本会读取 token → `GET /user` → 创建仓库（已存在则沿用）→ 本地提交 →
-一次性推送 → 把 `origin` 设为**不含凭据**的干净地址。
-token 不写文件、不打印、不进 remote；最小权限为 `repo`。发布完请撤销该 PAT。
+若环境变量在 GUI 会话里读不到（常见），把 PAT 写成**仓库目录之外**的单行纯文本文件即可，
+脚本会自动读取，也支持 `GITHUB_TOKEN_FILE=/path/to/pat.txt` 自定义路径：
+
+```bash
+# 默认回退路径：~/.workbuddy/github_pat.txt
+printf '%s' 'ghp_xxx' > ~/.workbuddy/github_pat.txt
+python scripts/publish_github.py
+```
+
+PAT 最小权限：经典 token 勾选 `repo`；细粒度 token 需要 `Administration: write`（建仓库）
+与 `Contents: write`（推送）。脚本会读取 token → `GET /user` → 创建仓库（已存在则沿用）→
+本地提交 → 一次性推送 → 把 `origin` 设为**不含凭据**的干净地址。
+token 不写文件、不打印、不进 remote；发布完请删除该 PAT 文件并在 GitHub 撤销该 token。
 详见 [scripts/publish_github.py](scripts/publish_github.py) 顶部注释。
 
 ## 常见问题
